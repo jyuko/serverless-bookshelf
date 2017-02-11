@@ -48,3 +48,25 @@ export const list = (event, context, callback) => {
     callback(null, response);
   });
 };
+
+export const select = (event, context, callback) => {
+  const params = {
+    TableName: 'books',
+    FilterExpression : "begins_with(volumeInfo.title, :val) or begins_with(volumeInfo.authors[0], :val)",
+    ExpressionAttributeValues : {":val" :event.queryStringParameters.q}
+  };
+
+  dynamoDb.scan(params, (error, result) => {
+    if (error) {
+      console.error(error);
+      callback(new Error('Couldn\'t get items.'));
+      return;
+    }
+
+    const response = {
+      statusCode: 200,
+      body: JSON.stringify(result.Items),
+    };
+    callback(null, response);
+  });
+};
