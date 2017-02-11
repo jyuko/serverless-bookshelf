@@ -37,6 +37,13 @@ functions:
           path: bookshelf
           method: post
           cors: true
+  list:
+    handler: handler.list
+    events:
+      - http:
+          path: bookshelf/list
+          method: get
+          cors: true
 
 resources:
   Resources:

@@ -27,3 +27,24 @@ export const create = (event, context, callback) => {
     callback(null, response);
   });
 };
+
+export const list = (event, context, callback) => {
+  const params = {
+    TableName: 'books'
+  };
+
+  dynamoDb.scan(params, (error, result) => {
+    if (error) {
+      console.error(error);
+      callback(new Error('Couldn\'t get items.'));
+      return;
+    }
+
+    // create a response
+    const response = {
+      statusCode: 200,
+      body: JSON.stringify(result.Items),
+    };
+    callback(null, response);
+  });
+};
