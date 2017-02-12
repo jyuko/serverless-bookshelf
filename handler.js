@@ -28,6 +28,29 @@ export const create = (event, context, callback) => {
   });
 };
 
+export const get = (event, context, callback) => {
+  const params = {
+    TableName: 'books',
+    Key: {
+      id: event.pathParameters.id,
+    }
+  };
+
+  dynamoDb.get(params, (error, result) => {
+    if (error) {
+      console.error(error);
+      callback(new Error('Couldn\'t get item.'));
+      return;
+    }
+
+    const response = {
+      statusCode: 200,
+      body: JSON.stringify(result.Item),
+    };
+    callback(null, response);
+  });
+};
+
 export const list = (event, context, callback) => {
   const params = {
     TableName: 'books'

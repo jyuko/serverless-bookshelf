@@ -37,6 +37,13 @@ functions:
           path: bookshelf
           method: post
           cors: true
+  get:
+    handler: handler.get
+    events:
+      - http:
+          path: bookshelf/{id}
+          method: get
+          cors: true
   list:
     handler: handler.list
     events:
