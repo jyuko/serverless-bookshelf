@@ -92,3 +92,26 @@ export const select = (event, context, callback) => {
     callback(null, response);
   });
 };
+
+export const remove = (event, context, callback) => {
+  const params = {
+    TableName: 'books',
+    Key: {
+      id: event.pathParameters.id,
+    }
+  };
+
+  dynamoDb.delete(params, (error, result) => {
+    if (error) {
+      console.error(error);
+      callback(new Error('Couldn\'t delete item.'));
+      return;
+    }
+
+    const response = {
+      statusCode: 200,
+      body: JSON.stringify({message: 'Success.'}),
+    };
+    callback(null, response);
+  });
+};

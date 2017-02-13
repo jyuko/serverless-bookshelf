@@ -33,3 +33,7 @@ Scan all items from books DB.
 
 `GET https://{domain}/{stage}/bookshelf?q={query}`  
 Scan items matched query-string from books DB.  
+
+### DELETE method
+`DELETE https://{domain}/{stage}/bookshelf/{id}`  
+Delete item with specified id from books DB.

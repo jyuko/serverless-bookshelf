@@ -58,6 +58,13 @@ functions:
           path: bookshelf
           method: get
           cors: true
+  delete:
+    handler: handler.remove
+    events:
+      - http:
+          path: bookshelf/{id}
+          method: delete
+          cors: true
 
 resources:
   Resources:
