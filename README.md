@@ -1,5 +1,5 @@
 # [WIP]serverless-bookshelf
-REST-API for managing books using a serverless framework.
+REST-API for managing books using Serverless Framework.
 
 This application uses the following services.
 
