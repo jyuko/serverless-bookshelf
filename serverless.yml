@@ -17,7 +17,6 @@ provider:
   name: aws
   runtime: nodejs4.3
   memorySize: 128
-  stage: dev
   region: ap-northeast-1
 
   iamRoleStatements:
@@ -25,6 +24,9 @@ provider:
       Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/*"
       Action:
         - "dynamodb:*"
+
+  apiKeys:
+    - ${opt:stage}-apiKey
 
 plugins:
   - serverless-webpack
@@ -37,6 +39,7 @@ functions:
           path: bookshelf
           method: post
           cors: true
+          private: true
   get:
     handler: handler.get
     events:
@@ -44,6 +47,7 @@ functions:
           path: bookshelf/{id}
           method: get
           cors: true
+          private: true
   list:
     handler: handler.list
     events:
@@ -51,6 +55,7 @@ functions:
           path: bookshelf/list
           method: get
           cors: true
+          private: true
   select:
     handler: handler.select
     events:
@@ -58,6 +63,7 @@ functions:
           path: bookshelf
           method: get
           cors: true
+          private: true
   delete:
     handler: handler.remove
     events:
@@ -65,6 +71,7 @@ functions:
           path: bookshelf/{id}
           method: delete
           cors: true
+          private: true
 
 resources:
   Resources:
