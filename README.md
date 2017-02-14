@@ -15,7 +15,7 @@ $ npm install -g serverless
 ```
 $ git clone https://github.com/jyuko/serverless-bookshelf
 $ cd serverless-bookshelf && npm install
-$ serverless deploy
+$ serverless deploy --stage dev
 ```
 
 ## Interface
